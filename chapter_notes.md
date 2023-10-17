@@ -68,3 +68,49 @@ binary search
         - worst case runtime of an algo as the size of the data grows
     - the benefit of needing only a longarithmic number of comparisons will far outwigh additional per steps costs
 
+## chap 3
+dynamic data structures
+- dds
+    - alter their structure as the data changes 
+    - lie at the heart of almost every computer program in the world and are the foundation of some of the most exciting, interesting, and powerful algos in cs 
+- the previous data structures are like parking lots, cant change once created. 
+- limitations of arrays 
+    - their size and layout in memory are fixed at the time of creation 
+    - array: simple static array, cannot grow with the data
+    - if we want to extend the array, we have to make a bigger array to then copy and place the exisitng set of data into, and then add the new element at the end 
+    - array doubling: dulicating the array and doubling the size, ex. 20 slots for data, 18 peices of data, add in 4 pieces of data, double the slots for data to 40. now every time we add data, although it might not fill up the slots, we double the entire thing. as it grows, the doubleing may become less frequent, yet, we still are taking up large sums of memory because of all the unfilled slots. 
+- pointers and references 
+    - a pointer is a varibale that stores only the addresses in the computers memory
+    - ex. say there are just way too many folders inside a cabniet drawer, and you need a way to make sure the drawer stays organized and neat. you decide to take a folder out and leave a not that says "the folder is now at *this location*" that note that you have left is the pointer. 
+- linked list
+    - simplest ex of dynamic data structures
+    - used for storing multiple values 
+    - composed of a chain of nodes linked together by pointers
+    - a basic node in a linked list is a composite data structure containing two parts, a value(of any type) and a pointer, pointing to the next node in the list
+    - slash at the end of a linked list is the end, the head is the begining
+    - these linked lists pay attention to their relative order
+    - ex. waiting in line in a coffee shop. each person has their name, and they point to the person in front of them, they could be all over the parking lot and seating areas, but as long as they know that the person in front of them is next in line, then they are apart of the linked list. 
+    - our list can even be scattered accross the computers memory
+    - traversing a linkest list requires moving from one node to the next along the chain of pointers 
+    - linked in have a higher computing overhead than arrays 
+- operations on linked lists
+    - inserting a new value into a linked list requires placing the new values pointer to the space infront of the value, and then placing the space behind its pointer to the new value 
+        - ex. x -> y. want to insert n inbetween. n -> y, then x -> n. end with x -> n -> y
+        - if we place x's pointer first, we lose the data on where y resides 
+    - deleting a value from a linked list
+        - all we need to do is delete that node, and adjust the previous nodes pointer to the value ahead of the deleted one. 
+    - the strength of the linked list is that they allow us to insert or remove elements without shifting those elements around in the computers memory
+- doubly linked lists
+    - includes backwards and forwards pointers
+    - for algos that need to iterate lists in both directions
+    - updating the appropriate nodes previous pointers in addition to their next pointers require additional logic
+- arrays and linked lists of items 
+    - say you want to make a rsvp list for a party where guests can also include their name and music preferences, and want to make sure their is enough room for all of their characters but not limit it to a number, because what is someone want to type more than the character limit? 
+    - this is where we would combine arrays and pointers into one. 
+        - each bin in the array stores one pointer to the data of a string somewhere else in the in the memory
+        - this allows us to allocate as much space needed for each entry, not taking up more where we dont need to 
+        - this allows us to fill the array with fixed size pointers, pointing to larger sets of data
+- why this matters
+    - linked lists and arryas are only the simplest example of how we can trade off among complextivity, efficentcy, and flexibility in our data structures.
+    - a single fixed-size array bin can point to complex data records or strings of different lengths
+    
