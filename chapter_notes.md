@@ -114,3 +114,52 @@ dynamic data structures
     - linked lists and arryas are only the simplest example of how we can trade off among complextivity, efficentcy, and flexibility in our data structures.
     - a single fixed-size array bin can point to complex data records or strings of different lengths
     
+## chap 4
+stacks and queues 
+- 2 data structures that retrieve stored data based on inserted order 
+    - stacks : most recently sorted
+    - queues : returns the oldest
+- queues enable breadth first search, shallowly explores adjacent paths before digging deeper, this change can dramatically impoact real world behavior 
+- stacks 
+    - LIFO, last in first out 
+    - implement with either arrays or linked lists 
+    - when we retireve an element, it is pushed to the array, and now that last element is the top of the array. 
+    - must be careful when pushing a lot of elemetns to arrays, if we run out of space, we might expand the array with a technique called array doubling
+        - implement an algo to check if there is room to push the element, if there is not, the array doubles, but if there is than the element is pushed
+    - since we are only adding or removing items from the end of the array, we dont need to shift around any other elements 
+    - as long as there is suffiencent room, we can perform + and - at a constant cost 
+        - whether we have 10 elements or 10000, adding or removing an element requires the same number of operations. 
+    - alternatively we can implement stacks as linked lists. 
+        - the code for pushing starts by creating a new linked list node, then it inserts this node into the front of the list by updating the new nodes next pointer and the stacks head pointer (similar to previous chapter)
+        - we are no longer setting a single array value and incrementing an index, the tradeoff is allowing us to have more flexiblility, linked lists can grow and shrink with the data. we no longer have to worry about filling up our array or paying the addtional costs to increase the arrays size
+- queues 
+    - FIFO, first in first out 
+        - similar to a queue in a coffee shop 
+    - includes two opertations 
+        - Enqueue : adds a new element to the queue, the back
+        - Dequeue : takes out the oldest element in the queue, the front
+    - preserve the order in which they are added 
+    - queues as arrays 
+        - to perfrom we track two indices, the first and last element in the queue
+        - when we dequeue an element, we move the top to the next place in the array, from [0] to [1], and so on, so when we enqueue, the back would go from say indice [3] to [4].
+            - however this can causes issues with a block of empty space in the front of the array, we can solve this with wrapping, wrapping queues allows for less space to be allocated to the growing list. 
+    - queues as linked lists 
+        - better to implement queues as a linked list or a doubled linked list. 
+        - is similiar to the linked list we used for the stack, each element in the queue links to the elemtn immediately behind it. allowing us to traverse the next pointers from the front of the queue to the back
+        - allows us to traverse the next pointers from the front of the queue to the back
+        - both pointers need to be updated because otherwise they wouldnt be pointing to the valid nodes. 
+        - both the enqueue and dequeue operations require a constant number of operations, regaurdless of the size of the queue. 
+- the important of order 
+    - queues work best when we need our storage to preserve the ordering of insertions. 
+    - we use stacks when we want to process the most recent items first 
+- depth-first search 
+    - an algorithm that continues exploring, deeper and deeper, along a single path until it hits a dead end. 
+    - the algo then backs up to the last branching point and check the other options. its maintains a list of furute states to explore using a stack, always choosing the most recently inserted option to try next. 
+- breadth-first search 
+    - uses similar logic to that of depth-first search to explore topics, but stores future states with a queue. 
+    - instead of following those topics further, we take the next item from the front of the queue, and explore the final link from the intial page. 
+    - instead of deeply exploring each thread before returning to previous ones, we explore along the frontier of topics, prioritizing breadth over depth. 
+    - ideal for people who dont want to let old topics linger and prefer to corss them off before moving onto new topics 
+- why this matters
+    - both stacks and queues store objects 
+    - however, the way they handle the data, and specifically the order in whcih they return the data, gives they similar data structures radically different behaviors 
